@@ -1,0 +1,198 @@
+body {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    font-size: 40px;
+    font-family: 'Libre Franklin', sans-serif;
+    text-align: center;
+    color: #ff6873;
+}
+
+input {
+    display: none;
+}
+
+.accordion {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.box {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: 54px;
+    border-top: 1px dotted #dce7eb;
+    text-align: center;
+}
+
+.box:has(> input:checked),
+input:checked~.section-close,
+input:checked~.section-title {
+    height: auto;
+}
+
+.section-title {
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 25px;
+    font-family: 'Libre Franklin', italic;
+    color: rgb(223, 162, 82);
+    cursor: pointer;
+}
+
+.pic {
+    display: inline-block;
+    opacity: 0;
+    visibility: visible;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+img {
+    width: 500px;
+    height: 500px;
+}
+
+.section-close {
+    height: 54px;
+    width: 100%;
+    cursor: pointer;
+    opacity: 0;
+}
+
+input:checked~.section-title {
+    color: black;
+}
+
+/* мем раскрывается при клике input */
+input:checked~.pic,
+input:checked~.section-close {
+    display: inline-block;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.5s ease-in-out;
+}
+
+.accordion .box:active .section-title {
+    color: rgb(223, 162, 82);
+}
+
+@media (hover:hover) {
+
+    input:hover,
+    input:hover~.section-close,
+    .box:hover {
+        height: auto;
+    }
+
+    .box:hover .section-title {
+        color: black;
+    }
+
+    /* при  наведении мышки на весь элемент появляется крестик на выбранном меме */
+    .accordion:hover input:checked~.section-title::after {
+        transform: rotate(45deg);
+        font-size: 30px;
+    }
+
+    /* при наведении мышки на весь элемент весь текст меняет цвет*/
+    .accordion:hover .section-title {
+        color: black;
+    }
+
+    /* при наведении мышки возле скрытых элементов плюсик */
+    .accordion:hover>.box .section-title::after {
+        content: '+';
+        font-size: 30px;
+        transition: transform .25s ease-in-out;
+    }
+
+    /* скрытый мем виден при наведении мышки */
+    .box:hover>input,
+    .box:hover>input~.pic,
+    .box:hover>input~.section-close {
+        opacity: 1;
+        visibility: visible;
+        transition: all 1s ease-in-out;
+    }
+
+    /* крестик при наведении мышки */
+    .accordion .box:hover .section-title::after {
+        transform: rotate(45deg);
+        font-size: 30px;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    body {
+        max-width: 700px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .pic {
+        width: 80%
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .accordion:hover input:checked~.section-title::after {
+        font-size: 20px;
+    }
+
+    .accordion:hover>.box .section-title::after {
+        font-size: 25px;
+    }
+
+    .accordion .box:hover .section-title::after {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    body {
+        max-width: 300px;
+    }
+
+    h1 {
+        font-size: 15px;
+    }
+
+    .pic {
+        width: 100%;
+    }
+
+    img {
+        width: 300px;
+        height: 300px;
+    }
+
+
+    .section-title {
+        font-size: 15px;
+    }
+
+    .accordion:hover input:checked~.section-title::after {
+        font-size: 15px;
+    }
+
+    .accordion:hover>.box .section-title::after {
+        font-size: 20px;
+    }
+
+    .accordion .box:hover .section-title::after {
+        font-size: 15px;
+    }
+}
